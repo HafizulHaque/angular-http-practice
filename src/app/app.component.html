@@ -19,7 +19,7 @@
         <!-- submit button  -->
         <div class="row my-2">
           <div class="col-md-9 offset-md-3">
-            <button type="submit" class="btn btn-success">Add Post</button>
+            <button type="submit" class="btn btn-success" [disabled]="postForm.invalid">Add Post</button>
           </div>
         </div>
       </form>
