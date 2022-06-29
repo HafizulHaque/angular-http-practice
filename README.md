@@ -8,6 +8,6 @@
 
 ![screenshot of the UI](UI-Screenshot.PNG)
 
-follow [This Preview Link](https://HafizulHaque.gitlab.io/angular-http-practice/) for live preview.
+follow [This Preview Link](https://hafizulhaque.github.io/angular-http-practice/) for live preview.
 
 Cheers!
