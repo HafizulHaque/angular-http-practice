@@ -6,7 +6,7 @@
 
 ## This app is hosted in Github using Github pages 
 
-![screenshot of the UI]('UI-Screenshot.PNG')
+![screenshot of the UI](UI-Screenshot.PNG)
 
 follow: `https://HafizulHaque.gitlab.io/angular-http-practice/` for live preview.
 
