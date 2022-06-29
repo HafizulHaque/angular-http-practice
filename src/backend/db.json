@@ -1,9 +1,14 @@
 {
   "posts": [
     {
-      "title": "first post",
-      "content": "lorem ipsum example text",
+      "title": "Post 1",
+      "content": "Content of Post 1",
       "id": 1
+    },
+    {
+      "title": "Post 2",
+      "content": "Content of Post 2",
+      "id": 2
     }
   ]
 }

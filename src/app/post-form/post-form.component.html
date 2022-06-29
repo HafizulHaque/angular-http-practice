@@ -1,4 +1,4 @@
-<form class="border rounded px-2 py-3 my-2" [formGroup]="postForm" (ngSubmit)="onPostAdd()">
+<form class="border rounded px-2 py-3 my-2" [formGroup]="postForm" (ngSubmit)="onPostSubmit()">
   <!-- title input  -->
   <div class="row my-2">
     <label for="title" class="col-md-3 col-form-label text-md-end">Title</label>
@@ -16,7 +16,10 @@
   <!-- submit button  -->
   <div class="row my-2">
     <div class="col-md-9 offset-md-3">
-      <button type="submit" class="btn btn-success" [disabled]="postForm.invalid">Add Post</button>
+      <button type="submit" class="btn btn-success" [disabled]="postForm.invalid">
+        {{updateMode ? 'Update Post': 'Add Post'}}
+      </button>
+      <button *ngIf="updateMode" type="button" class="btn btn-warning mx-2" (click)="onClear()">Clear</button>
     </div>
   </div>
 </form>
