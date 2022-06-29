@@ -2,12 +2,12 @@
 
 ## First install the backend mock API locally following the bellow command
 
-`https://github.com/HafizulHaque/test-angular-http-db`
+[https://github.com/HafizulHaque/test-angular-http-db](https://github.com/HafizulHaque/test-angular-http-db)
 
 ## This app is hosted in Github using Github pages 
 
 ![screenshot of the UI](UI-Screenshot.PNG)
 
-follow: `https://HafizulHaque.gitlab.io/angular-http-practice/` for live preview.
+follow [This Preview Link](https://HafizulHaque.gitlab.io/angular-http-practice/) for live preview.
 
 Cheers!
