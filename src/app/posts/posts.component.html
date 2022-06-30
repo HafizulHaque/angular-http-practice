@@ -1,3 +1,7 @@
+<!-- error display  -->
+<div class="alert alert-danger" *ngIf="error">
+  {{error}}
+</div>
 <div class="border rounded px-2 py-3 my-2">
   <div class="row align-items-end">
     <div class="col">
@@ -11,14 +15,21 @@
   <div class="alert alert-primary" *ngIf="isLoading">
     Loading...
   </div>
-  <div class="card my-2" *ngFor="let post of posts">
-    <div class="card-header">{{post.title}}</div>
+  <div class="card my-2" *ngIf="posts.length <= 0">
     <div class="card-body">
-      <p>{{post.content}}</p>
-      <div>
-        <button class="btn btn-sm btn-warning mx-1" (click)="onUpdate(post.id)">update</button>
-        <button class="btn btn-sm btn-danger mx-1" (click)="onDelete(post.id)">Delete</button>
-      </div>
+      <p>No posts available..</p>
     </div>
   </div>
+  <ng-container *ngIf="posts.length > 0">
+    <div class="card my-2" *ngFor="let post of posts">
+      <div class="card-header">{{post.title}}</div>
+      <div class="card-body">
+        <p>{{post.content}}</p>
+        <div>
+          <button class="btn btn-sm btn-warning mx-1" (click)="onUpdate(post.id)">update</button>
+          <button class="btn btn-sm btn-danger mx-1" (click)="onDelete(post.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>

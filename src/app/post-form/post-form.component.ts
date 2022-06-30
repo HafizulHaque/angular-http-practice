@@ -25,8 +25,9 @@ export class PostFormComponent implements OnInit, OnDestroy{
       title: ['', [Validators.required]],
       content: ['', [Validators.required]]
     })
-    this.updateFormDataSub = this.httpService.populateFormSub.subscribe((postData: Post)=>{
-      this.populateFormWithData(postData);
+    this.updateFormDataSub = this.httpService.populateFormSub.subscribe((postData: [Post, boolean])=>{
+      this.populateFormWithData(postData[0]);
+      this.updateMode = postData[1];
     })
   }
 

@@ -10,8 +10,6 @@ import { HttpServiceService } from './services/http-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-
-  errors: any = null;
   
   constructor(){}
 

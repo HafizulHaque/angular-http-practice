@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Post } from '../model/post.model';
@@ -12,13 +13,15 @@ export class PostsComponent implements OnInit, OnDestroy{
 
   isLoading: boolean = false;
   posts : Post[] = [];
+  error : string | null = null;
   subscription !: Subscription;
 
   constructor(private httpService: HttpServiceService ) { }
 
   ngOnInit(): void {
-    this.subscription = this.httpService.postChangeSub.subscribe((data: Post[])=>{
-      this.posts = data;
+    this.subscription = this.httpService.postChangeSub.subscribe((data: [Post[], HttpErrorResponse | null])=>{
+      this.posts = data[0];
+      this.error = data[1] ?  data[1].message : null;
     })
     this.onFetchPost();
   }
@@ -42,6 +45,9 @@ export class PostsComponent implements OnInit, OnDestroy{
       return;
     }
     this.httpService.deletePost(id);
+    if(this.httpService.getCurrentUpdatingPostId()===id){
+      this.httpService.disableUpdateMode();
+    }
   }
 
   ngOnDestroy(): void {
