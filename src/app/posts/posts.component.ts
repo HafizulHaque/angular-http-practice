@@ -14,14 +14,18 @@ export class PostsComponent implements OnInit, OnDestroy{
   isLoading: boolean = false;
   posts : Post[] = [];
   error : string | null = null;
-  subscription !: Subscription;
+  postSubscription !: Subscription;
+  loadingSubscription !: Subscription;
 
   constructor(private httpService: HttpServiceService ) { }
 
   ngOnInit(): void {
-    this.subscription = this.httpService.postChangeSub.subscribe((data: [Post[], HttpErrorResponse | null])=>{
+    this.postSubscription = this.httpService.postChangeSub.subscribe((data: [Post[], HttpErrorResponse | null])=>{
       this.posts = data[0];
       this.error = data[1] ?  data[1].message : null;
+    })
+    this.loadingSubscription = this.httpService.fetchingSub.subscribe((loadingStatus: boolean)=>{
+      this.isLoading = loadingStatus;
     })
     this.onFetchPost();
   }
@@ -51,7 +55,8 @@ export class PostsComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.postSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 
 }

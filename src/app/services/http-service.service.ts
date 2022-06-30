@@ -11,11 +11,13 @@ const API_URL = "http://localhost:3000/posts";
 export class HttpServiceService implements OnInit{
 
   posts !: Post[];
+  fetching: boolean = false;
   error : HttpErrorResponse | null = null;
   updateMode: boolean = false;
   updatePostId: number = -1;
   postChangeSub = new Subject<[Post[], HttpErrorResponse | null]>();
-  populateFormSub = new Subject<[ Post, boolean]>()
+  populateFormSub = new Subject<[ Post, boolean]>();
+  fetchingSub = new Subject<boolean>();
 
   constructor(
     private http: HttpClient
@@ -30,18 +32,25 @@ export class HttpServiceService implements OnInit{
   }
 
   getAllPosts(){
+    this.fetching = true;
+    this.fetchingSub.next(this.fetching);
     this.http.get<Post[]>(API_URL).subscribe((response: Post[]) => {
       console.log('got all posts');
       console.log(response);
       this.posts = response;
       this.error = null;
       this.postChangeSub.next([this.posts, this.error]);
+      this.fetching = false;
+      this.fetchingSub.next(this.fetching);
     }, (err: HttpErrorResponse)=>{
       console.log(err);
       this.posts = [];
       this.error = err;
-      this.postChangeSub.next([this.posts, this.error])
+      this.postChangeSub.next([this.posts, this.error]);
+      this.fetching = false;
+    this.fetchingSub.next(this.fetching);
     })
+    
   }
 
   addPost(data: Post){
